@@ -1,5 +1,0 @@
-SIGUIENTES PASOS:
-
-1. Crear el proyecto de GitHub para subir el proyecto como parte de tu portafolio oficial.
-
-NOTA: El ejecutable para Windows se queda como portable.

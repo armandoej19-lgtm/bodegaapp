@@ -244,15 +244,15 @@ Para consultas, sugerencias o colaboración:
     
     def open_github(self):
         """Abre el repositorio de GitHub"""
-        github_url = "https://github.com/tuusuario/bodegaapp"
+        github_url = "https://github.com/armandoej19-lgtm/bodegaapp"
         webbrowser.open_new(github_url)
     
     def open_documentation(self):
         """Abre la documentación (puedes personalizar la URL)"""
-        docs_url = "https://github.com/tuusuario/bodegaapp/wiki"
+        docs_url = "https://github.com/armandoej19-lgtm/bodegaapp/wiki"
         webbrowser.open_new(docs_url)
     
     def report_issue(self):
         """Abre la página para reportar issues"""
-        issues_url = "https://github.com/tuusuario/bodegaapp/issues"
+        issues_url = "https://github.com/armandoej19-lgtm/bodegaapp/issues"
         webbrowser.open_new(issues_url)

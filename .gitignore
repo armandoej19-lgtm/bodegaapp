@@ -123,4 +123,6 @@ pip-wheel-metadata/
 
 # Output de profiling
 *.prof
-*.callgrind
+*.callgrindbodega-env-3.12/
+bodega-env-*/
+bodega-env-3.12/
