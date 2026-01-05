@@ -19,14 +19,14 @@ Sistema de gestión de inventario para dispositivos electrónicos con interfaz g
 ## 🚀 Instalación Rápida
 
 ### Windows (Usuarios finales)
-1. Descarga `BodegaApp.exe` de la [última release](https://github.com/tuusuario/bodega-app/releases/latest)
+1. Descarga `BodegaApp.exe` de la [última release](https://github.com/armandoej19-lgtm/bodegaapp/releases/latest)
 2. Ejecuta el instalador
 3. ¡Listo para usar!
 
 ### Desarrollo
 ```bash
 # Clonar repositorio
-git clone https://github.com/tuusuario/bodega-app.git
+git clone https://github.com/armandoej19-lgtm/bodegaapp.git
 cd bodega-app
 
 # Crear entorno virtual
