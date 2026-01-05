@@ -1,0 +1,17 @@
+# Core dependencies
+customtkinter>=5.2.0
+pandas>=2.0.0
+openpyxl>=3.1.0
+
+# Optional/Development
+# pillow>=10.0.0  # Uncomment if you need image handling
+# matplotlib>=3.7.0  # Uncomment if you need charts
+
+# Testing (optional)
+pytest>=7.0.0
+pytest-cov>=4.0.0
+
+# Code quality (optional)
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.0.0

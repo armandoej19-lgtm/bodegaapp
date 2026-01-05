@@ -1,0 +1,126 @@
+# ============================================
+# ENTORNOS VIRTUALES Y CONFIGURACIONES LOCALES
+# ============================================
+bodega-env/
+bodega-env-new/
+venv/
+env/
+.env
+.env.local
+.env.*
+.venv/
+pyvenv.cfg
+
+# ============================================
+# OUTPUTS DE BUILD (PYINSTALLER/NUITKA)
+# ============================================
+dist/
+build/
+*.spec
+__pycache__/
+*.py[cod]
+*.so
+.Python
+*.egg-info/
+*.egg
+.pytest_cache/
+
+# ============================================
+# DATOS LOCALES Y SENSIBLES
+# ============================================
+data/
+!data/.gitkeep
+!data/README.md
+*.db
+*.sqlite
+*.sqlite3
+*.xlsx
+*.csv
+*.json
+*.pkl
+*.pickle
+
+# ============================================
+# LOGS Y ARCHIVOS TEMPORALES
+# ============================================
+logs/
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+~*
+
+# ============================================
+# SISTEMA OPERATIVO
+# ============================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ============================================
+# IDE/EDITORES
+# ============================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+*.sublime-*
+
+# ============================================
+# WINDOWS/EXE ESPECÍFICO
+# ============================================
+*.exe
+*.msi
+*.pyd
+*.dll
+
+# ============================================
+# DOCUMENTACIÓN GENERADA
+# ============================================
+docs/_build/
+docs/build/
+
+# ============================================
+# COBERTURA Y TESTING
+# ============================================
+.coverage
+htmlcov/
+.pytest_cache/
+test-results/
+*.coverage
+coverage.xml
+
+# ============================================
+# PAQUETES Y DISTRIBUCIONES
+# ============================================
+*.whl
+*.tar.gz
+*.zip
+*.7z
+
+# ============================================
+# PROYECTO ESPECÍFICO
+# ============================================
+# Archivos de configuración local
+config/local*.py
+config/dev*.py
+
+# Cache de dependencias
+.pip-cache/
+pip-wheel-metadata/
+
+# Output de profiling
+*.prof
+*.callgrind

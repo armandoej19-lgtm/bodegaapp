@@ -1,0 +1,31 @@
+# Include README
+include README.md
+include LICENSE
+
+# Include documentation
+include docs/*.md
+include docs/*.txt
+
+# Include data files
+include data/*.db
+recursive-include data/exports *
+recursive-include data/backups *
+
+# Include configuration
+include config/*.py
+include config/*.ini
+
+# Include assets
+recursive-include assets *
+
+# Include scripts
+include scripts/*.py
+
+# Exclude cache and temporary files
+global-exclude __pycache__
+global-exclude *.py[cod]
+global-exclude *$py.class
+global-exclude .DS_Store
+global-exclude .git
+global-exclude .vscode
+global-exclude .idea
