@@ -24,7 +24,7 @@ def check_dependencies():
             missing_packages.append(package)
     
     if missing_packages:
-        print("❌ Faltan dependencias necesarias:")
+        print("[ERROR] Faltan dependencias necesarias:")
         for package in missing_packages:
             print(f"   - {package}")
         print("\nInstalar con:")
@@ -41,7 +41,7 @@ def setup_environment():
     for directory in directories:
         os.makedirs(directory, exist_ok=True)
     
-    print("✓ Entorno configurado correctamente")
+    print("[OK] Entorno configurado correctamente")
 
 def main():
     """Función principal"""
@@ -61,12 +61,12 @@ def main():
         from src.main import main as app_main
         app_main()
     except ImportError as e:
-        print(f"❌ Error de importación: {e}")
+        print(f"[ERROR] Error de importación: {e}")
         print("Verifica la estructura del proyecto")
         input("\nPresiona Enter para salir...")
         sys.exit(1)
     except Exception as e:
-        print(f"❌ Error inesperado: {e}")
+        print(f"[ERROR] Error inesperado: {e}")
         import traceback
         traceback.print_exc()
         input("\nPresiona Enter para salir...")

@@ -1,0 +1,15 @@
+BODEGA APP - Versión Windows
+==============================
+
+Para ejecutar:
+1. Asegúrate de tener todas las carpetas en el mismo directorio:
+   - BodegaApp.exe
+   - config/
+   - views/
+   - models/
+   - assets/
+   - data/
+
+2. Ejecuta BodegaApp.exe
+
+Los datos se guardarán en la carpeta data/

@@ -21,9 +21,9 @@ class Database:
             
             self.conn = sql.connect(self.db_name)
             self.cur = self.conn.cursor()
-            print(f"✅ Conectado a: {self.db_name}")
+            print(f"[OK] Conectado a: {self.db_name}")
         except sql.Error as e:
-            print(f'❌ Error al conectar: {e}')
+            print(f'[ERROR] Error al conectar: {e}')
             raise
     
     def create_tables(self):
@@ -51,9 +51,9 @@ class Database:
                 FOREIGN KEY (device_id) REFERENCES DeviceReg(id))''')
             
             self.conn.commit()
-            print("✅ Tablas creadas/verificadas")
+            print("[OK] Tablas creadas/verificadas")
         except sql.Error as e:
-            print(f'❌ Error creando tablas: {e}')
+            print(f'[ERROR] Error creando tablas: {e}')
             if self.conn:
                 self.conn.rollback()
     
@@ -75,15 +75,15 @@ class Database:
                                f'Dispositivo {serialno} ({model}) de planta {plant} agregado'))
             
             self.conn.commit()
-            print(f"✅ Dispositivo agregado: {serialno} (ID: {device_id})")
+            print(f"[OK] Dispositivo agregado: {serialno} (ID: {device_id})")
             return device_id
         except sql.IntegrityError:
-            print(f'❌ Error: Serial {serialno} ya existe')
+            print(f'[ERROR] Error: Serial {serialno} ya existe')
             if self.conn:
                 self.conn.rollback()
             return None
         except sql.Error as e:
-            print(f'❌ Error: {e}')
+            print(f'[ERROR] Error: {e}')
             if self.conn:
                 self.conn.rollback()
             return None
@@ -124,10 +124,10 @@ class Database:
             
             deleted_count = self.cur.rowcount
             self.conn.commit()
-            print(f"✅ Eliminados {deleted_count} registros")
+            print(f"[OK] Eliminados {deleted_count} registros")
             return deleted_count
         except Exception as e:
-            print(f'❌ Error al eliminar información: {e}')
+            print(f'[ERROR] Error al eliminar información: {e}')
             if self.conn:
                 self.conn.rollback()
             return 0
@@ -155,10 +155,10 @@ class Database:
                             (f'%{search_term}%', f'%{search_term}%', f'%{search_term}%', f'%{search_term}%'))
             
             results = self.cur.fetchall()
-            print(f"✅ Búsqueda encontrada: {len(results)} resultados")
+            print(f"[OK] Búsqueda encontrada: {len(results)} resultados")
             return results
         except sql.Error as e:
-            print(f'❌ Error en búsqueda: {e}')
+            print(f'[ERROR] Error en búsqueda: {e}')
             return []
                 
     def get_all_devices(self):
@@ -166,10 +166,10 @@ class Database:
         try:
             self.cur.execute('SELECT * FROM DeviceReg ORDER BY entry_date DESC')
             results = self.cur.fetchall()
-            print(f"✅ Total dispositivos: {len(results)}")
+            print(f"[OK] Total dispositivos: {len(results)}")
             return results
         except sql.Error as e:
-            print(f'❌ Error en consulta: {e}')
+            print(f'[ERROR] Error en consulta: {e}')
             return []
     
     def close(self):
@@ -178,7 +178,7 @@ class Database:
             self.conn.close()
             self.conn = None
             self.cur = None
-            print("✅ Conexión a base de datos cerrada")
+            print("[OK] Conexión a base de datos cerrada")
     
     def __enter__(self):
         """Para usar con 'with' statement"""

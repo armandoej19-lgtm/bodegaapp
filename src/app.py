@@ -24,7 +24,7 @@ class App(ctk.CTk):
         self.db = Database()
         
         self.title('Bodega Register App')
-        self.geometry('1366x768')
+        self.geometry('1080x600')
         
         # Variables para almacenar resultados de búsqueda
         self.current_results = []
@@ -48,8 +48,6 @@ class App(ctk.CTk):
 
         # Configurar interfaz
         self.setup_ui()
-
-        self.aplication()
     
     def setup_ui(self):
         """Configura la interfaz de usuario principal"""
@@ -177,7 +175,7 @@ class App(ctk.CTk):
             # Definir columnas (ahora 8 columnas - sin "Nombre Planta")
             columns = [
                 "ID", 
-                "Código Planta",  # Solo el código
+                "Código Planta",
                 "Serial", 
                 "Tipo", 
                 "Modelo", 
@@ -194,7 +192,7 @@ class App(ctk.CTk):
             
             # Preguntar si quiere abrir la carpeta
             open_folder = messagebox.askyesno(
-                "✅ Exportación Completada",
+                "[OK] Exportación Completada",
                 f"Archivo guardado en:\n{file_path}\n\n"
                 f"¿Abrir carpeta contenedora?"
             )
@@ -203,7 +201,7 @@ class App(ctk.CTk):
                 self.open_file_explorer(file_path)
             
         except Exception as e:
-            messagebox.showerror("❌ Error", f"Error al exportar: {str(e)}")
+            messagebox.showerror("[ERROR] Error", f"Error al exportar: {str(e)}")
         
     def open_file_explorer(self, file_path):
         """Abre el explorador de archivos en la ubicación del archivo"""
@@ -312,16 +310,16 @@ class App(ctk.CTk):
                 return backup_files[0][0]
                 
             except Exception as e:
-                print(f"⚠️ Error obteniendo último backup: {e}")
+                print(f"[WARNING!] Error obteniendo último backup: {e}")
                 return None
 
     def setup_backup_system(self):
         """Configura el sistema de backup automático"""
         if not settings.BACKUP_ENABLED:
-            print("ℹ️  Sistema de backup deshabilitado en configuración")
+            print("[i]  Sistema de backup deshabilitado en configuración")
             return
         
-        print(f"🔧 Sistema de backup configurado:")
+        print(f"[i] Sistema de backup configurado:")
         print(f"   • Intervalo: cada {settings.BACKUP_INTERVAL_HOURS} horas")  
         print(f"   • Máximo backups: {settings.MAX_BACKUP_FILES}")
         print(f"   • Backup al iniciar: {'Sí' if settings.AUTO_BACKUP_ON_START else 'No'}")
@@ -363,7 +361,7 @@ class App(ctk.CTk):
             return db_size >= BACKUP_MIN_DB_SIZE
             
         except Exception as e:
-            print(f"⚠️ Error verificando tamaño de BD: {e}")
+            print(f"[WARNING!] Error verificando tamaño de BD: {e}")
             return False
 
     def should_create_backup(self, last_backup_file):
@@ -385,7 +383,7 @@ class App(ctk.CTk):
             return hours_diff >= settings.BACKUP_INTERVAL_HOURS
             
         except Exception as e:
-            print(f"⚠️ Error verificando necesidad de backup: {e}")
+            print(f"[WARNING!] Error verificando necesidad de backup: {e}")
             return True  # En caso de error, mejor crear backup
 
     def create_auto_backup(self):
@@ -396,7 +394,7 @@ class App(ctk.CTk):
             success, result = backup_database(verbose=False)
             
             if success:
-                print(f"✅ Backup automático creado: {os.path.basename(result)}")
+                print(f"[OK] Backup automático creado: {os.path.basename(result)}")
                 
                 # Limpiar backups antiguos según configuración
                 self.cleanup_old_backups(MAX_BACKUP_FILES)
@@ -405,10 +403,10 @@ class App(ctk.CTk):
                 self.last_backup_check = datetime.now()
                 
             else:
-                print(f"⚠️ No se pudo crear backup automático: {result}")
+                print(f"[WARNING!] No se pudo crear backup automático: {result}")
                 
         except Exception as e:
-            print(f"❌ Error en backup automático: {e}")
+            print(f"[ERROR] Error en backup automático: {e}")
 
     def cleanup_old_backups(self, max_files):
         """Limpia backups antiguos según configuración"""
@@ -435,12 +433,12 @@ class App(ctk.CTk):
                 for filepath, _ in files_to_delete:
                     try:
                         os.remove(filepath)
-                        print(f"🗑️  Eliminado backup antiguo: {os.path.basename(filepath)}")
+                        print(f"[i]  Eliminado backup antiguo: {os.path.basename(filepath)}")
                     except Exception as e:
-                        print(f"⚠️  No se pudo eliminar backup: {e}")
+                        print(f"[WARNING!]  No se pudo eliminar backup: {e}")
                         
         except Exception as e:
-            print(f"⚠️ Error limpiando backups antiguos: {e}")
+            print(f"[WARNING!] Error limpiando backups antiguos: {e}")
 
     def on_closing(self):
         """Cierra la aplicación con backup si está configurado"""
@@ -450,7 +448,7 @@ class App(ctk.CTk):
                 self.create_exit_backup()
             
         except Exception as e:
-            print(f"⚠️ Error en proceso de cierre: {e}")
+            print(f"[WARNING!] Error en proceso de cierre: {e}")
         finally:
             # Cerrar base de datos y aplicación
             self.db.close()
@@ -463,13 +461,13 @@ class App(ctk.CTk):
             last_backup_file = self.get_last_backup_file()
             
             if last_backup_file is None or self.should_create_exit_backup(last_backup_file):
-                print("📦 Creando backup antes de cerrar...")
+                print("[i] Creando backup antes de cerrar...")
                 success, result = backup_database(verbose=False)
                 if success:
-                    print(f"✅ Backup de cierre creado: {os.path.basename(result)}")
+                    print(f"[OK] Backup de cierre creado: {os.path.basename(result)}")
                     
         except Exception as e:
-            print(f"⚠️ Error en backup de cierre: {e}")
+            print(f"[WARNING!] Error en backup de cierre: {e}")
 
     def should_create_exit_backup(self, last_backup_file):
         """Determina si se debe crear backup al cerrar"""
@@ -483,5 +481,5 @@ class App(ctk.CTk):
             return time_diff.total_seconds() > 6 * 3600  # 6 horas
             
         except Exception as e:
-            print(f"⚠️ Error verificando backup de cierre: {e}")
+            print(f"[WARNING!] Error verificando backup de cierre: {e}")
             return False
